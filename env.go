@@ -28,7 +28,7 @@ func Int64GetEnv(name string, def int64) int64 {
 	if value == "" {
 		return def
 	}
-	i, err := strconv.ParseInt(name, 10, 64)
+	i, err := strconv.ParseInt(value, 10, 64)
 	if err != nil {
 		return def
 	}
@@ -40,7 +40,7 @@ func UInt64GetEnv(name string, def uint64) uint64 {
 	if value == "" {
 		return def
 	}
-	i, err := strconv.ParseUint(name, 10, 64)
+	i, err := strconv.ParseUint(value, 10, 64)
 	if err != nil {
 		return def
 	}
@@ -52,7 +52,7 @@ func FloatGetEnv(name string, def float64) float64 {
 	if value == "" {
 		return def
 	}
-	i, err := strconv.ParseFloat(name, 10)
+	i, err := strconv.ParseFloat(value, 10)
 	if err != nil {
 		return def
 	}
@@ -72,7 +72,7 @@ func BoolGetEnv(name string, def bool) bool {
 	if value == "" {
 		return def
 	}
-	i, err := strconv.ParseBool(name)
+	i, err := strconv.ParseBool(value)
 	if err != nil {
 		return def
 	}
@@ -104,7 +104,7 @@ func MustGetInt64(name string) int64 {
 	if value == "" {
 		log.Panic(failedToGetVar, name)
 	}
-	i, err := strconv.ParseInt(name, 10, 64)
+	i, err := strconv.ParseInt(value, 10, 64)
 	if err != nil {
 		log.Panic(failedToConvVar, name)
 	}
@@ -116,7 +116,7 @@ func MustGetUInt64(name string) uint64 {
 	if value == "" {
 		log.Panic(failedToGetVar, name)
 	}
-	i, err := strconv.ParseUint(name, 10, 64)
+	i, err := strconv.ParseUint(value, 10, 64)
 	if err != nil {
 		log.Panic(failedToConvVar, name)
 	}
@@ -128,7 +128,7 @@ func MustGetFloat(name string) float64 {
 	if value == "" {
 		log.Panic(failedToGetVar, name)
 	}
-	i, err := strconv.ParseFloat(name, 10)
+	i, err := strconv.ParseFloat(value, 10)
 	if err != nil {
 		log.Panic(failedToConvVar, name)
 	}
@@ -140,7 +140,7 @@ func MustGetBool(name string) bool {
 	if value == "" {
 		log.Panic(failedToGetVar, name)
 	}
-	i, err := strconv.ParseBool(name)
+	i, err := strconv.ParseBool(value)
 	if err != nil {
 		log.Panic(failedToConvVar, name)
 	}
