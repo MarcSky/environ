@@ -13,7 +13,7 @@ Smooth conversation (with default value if env not exist) string to
 Example
 `ServerPort := environ.StrGetEnv("SERVER_PORT", 80)`
 
-##Strict conversation #
+## Strict conversation #
 Strict conversation (with **panic** if var not exist) string to
 - int
 - int64
