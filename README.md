@@ -6,7 +6,7 @@ Library for converting environment variable to certain type
 Smooth conversation (with default value if env not exist) string to
 - int
 - int64
-- uin64
+- uint64
 - string (with default value)
 - float64
 
@@ -17,8 +17,8 @@ Example
 Strict conversation (with **panic** if var not exist) string to
 - int
 - int64
-- uin64
-- string (with default value)
+- uint64
+- string
 - float64
 
 Example
