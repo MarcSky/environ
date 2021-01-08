@@ -12,7 +12,7 @@ const (
 	failedToConvVar = "Failed to convert environment variable "
 )
 
-func IntGetEnv(name string, def int) int {
+func GetIntEnv(name string, def int) int {
 	value := os.Getenv(name)
 	if value == "" {
 		return def
@@ -24,7 +24,7 @@ func IntGetEnv(name string, def int) int {
 	return i
 }
 
-func Int64GetEnv(name string, def int64) int64 {
+func GetInt64Env(name string, def int64) int64 {
 	value := os.Getenv(name)
 	if value == "" {
 		return def
@@ -36,7 +36,7 @@ func Int64GetEnv(name string, def int64) int64 {
 	return i
 }
 
-func UInt64GetEnv(name string, def uint64) uint64 {
+func GetUInt64Env(name string, def uint64) uint64 {
 	value := os.Getenv(name)
 	if value == "" {
 		return def
@@ -48,7 +48,7 @@ func UInt64GetEnv(name string, def uint64) uint64 {
 	return i
 }
 
-func FloatGetEnv(name string, def float64) float64 {
+func GetFloatEnv(name string, def float64) float64 {
 	value := os.Getenv(name)
 	if value == "" {
 		return def
@@ -60,7 +60,7 @@ func FloatGetEnv(name string, def float64) float64 {
 	return i
 }
 
-func StrGetEnv(name, def string) string {
+func GetStrEnv(name, def string) string {
 	value := os.Getenv(name)
 	if value == "" {
 		return def
@@ -68,7 +68,7 @@ func StrGetEnv(name, def string) string {
 	return value
 }
 
-func BoolGetEnv(name string, def bool) bool {
+func GetBoolEnv(name string, def bool) bool {
 	value := os.Getenv(name)
 	if value == "" {
 		return def
@@ -80,7 +80,7 @@ func BoolGetEnv(name string, def bool) bool {
 	return i
 }
 
-func TimeDurationEnv(name string, defaultVal string) time.Duration {
+func GetTimeDurationEnv(name string, defaultVal string) time.Duration {
 	result, ok := os.LookupEnv(name)
 	if !ok {
 		result = defaultVal
@@ -94,7 +94,7 @@ func TimeDurationEnv(name string, defaultVal string) time.Duration {
 }
 
 func MustGetString(name string) string {
-	value := StrGetEnv(name, "")
+	value := GetStrEnv(name, "")
 	if value == "" {
 		log.Panic(failedToGetVar, name)
 	}

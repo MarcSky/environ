@@ -19,12 +19,12 @@ func TestIntGetEnv(t *testing.T) {
 		t.Error("os.Setenv returned unexpected error:", err)
 	}
 
-	value := environ.IntGetEnv(name, 1)
+	value := environ.GetIntEnv(name, 1)
 	if value != expectedValue {
 		t.Errorf("environ.IntGetEnv test failed. Expected: [%d] Got: [%d]", expectedValue, value)
 	}
 
-	value = environ.IntGetEnv("ENV_TEST_GET_INT_OTHER", expectedValue)
+	value = environ.GetIntEnv("ENV_TEST_GET_INT_OTHER", expectedValue)
 	if value != expectedValue {
 		t.Errorf("environ.IntGetEnv test failed. Expected: [%d] Got: [%d]", expectedValue, value)
 	}
@@ -62,12 +62,12 @@ func TestInt64GetEnv(t *testing.T) {
 		t.Error("os.Setenv returned unexpected error:", err)
 	}
 
-	value := environ.Int64GetEnv(name, 1)
+	value := environ.GetInt64Env(name, 1)
 	if value != expectedValue {
 		t.Errorf("environ.Int64GetEnv test failed. Expected: [%d] Got: [%d]", expectedValue, value)
 	}
 
-	value = environ.Int64GetEnv("ENV_TEST_GET_INT64_OTHER", expectedValue)
+	value = environ.GetInt64Env("ENV_TEST_GET_INT64_OTHER", expectedValue)
 	if value != expectedValue {
 		t.Errorf("environ.Int64GetEnv test failed. Expected: [%d] Got: [%d]", expectedValue, value)
 	}
@@ -105,12 +105,12 @@ func TestUInt64GetEnv(t *testing.T) {
 		t.Error("os.Setenv returned unexpected error:", err)
 	}
 
-	value := environ.UInt64GetEnv(name, 1)
+	value := environ.GetUInt64Env(name, 1)
 	if value != expectedValue {
 		t.Errorf("environ.UInt64GetEnv test failed. Expected: [%d] Got: [%d]", expectedValue, value)
 	}
 
-	value = environ.UInt64GetEnv("ENV_TEST_GET_UINT64_OTHER", expectedValue)
+	value = environ.GetUInt64Env("ENV_TEST_GET_UINT64_OTHER", expectedValue)
 	if value != expectedValue {
 		t.Errorf("environ.UInt64GetEnv test failed. Expected: [%d] Got: [%d]", expectedValue, value)
 	}
@@ -148,12 +148,12 @@ func TestFloatGetEnv(t *testing.T) {
 		t.Error("os.Setenv returned unexpected error:", err)
 	}
 
-	value := environ.FloatGetEnv(name, 1)
+	value := environ.GetFloatEnv(name, 1)
 	if value != expectedValue {
 		t.Errorf("environ.FloatGetEnv test failed. Expected: [%f] Got: [%f]", expectedValue, value)
 	}
 
-	value = environ.FloatGetEnv("ENV_TEST_GET_FLOAT64_OTHER", expectedValue)
+	value = environ.GetFloatEnv("ENV_TEST_GET_FLOAT64_OTHER", expectedValue)
 	if value != expectedValue {
 		t.Errorf("environ.FloatGetEnv test failed. Expected: [%f] Got: [%f]", expectedValue, value)
 	}
@@ -190,12 +190,12 @@ func TestBoolGetEnv(t *testing.T) {
 		t.Error("os.Setenv returned unexpected error:", err)
 	}
 
-	value := environ.BoolGetEnv(name, false)
+	value := environ.GetBoolEnv(name, false)
 	if value != false {
 		t.Errorf("environ.BoolGetEnv test failed. Expected: [%s] Got: [%s]", strconv.FormatBool(false), strconv.FormatBool(value))
 	}
 
-	value = environ.BoolGetEnv("ENV_TEST_GET_BOOL_OTHER", true)
+	value = environ.GetBoolEnv("ENV_TEST_GET_BOOL_OTHER", true)
 	if value != true {
 		t.Errorf("environ.BoolGetEnv test failed. Expected: [%s] Got: [%s]", strconv.FormatBool(false), strconv.FormatBool(value))
 	}
@@ -232,12 +232,12 @@ func TestStringGetEnv(t *testing.T) {
 		t.Error("os.Setenv returned unexpected error:", err)
 	}
 
-	value := environ.StrGetEnv(name, "world")
+	value := environ.GetStrEnv(name, "world")
 	if value != expectedValue {
 		t.Errorf("environ.StrGetEnv test failed. Expected: [%s] Got: [%s]", expectedValue, value)
 	}
 
-	value = environ.StrGetEnv("ENV_TEST_GET_STRING_OTHER", "world")
+	value = environ.GetStrEnv("ENV_TEST_GET_STRING_OTHER", "world")
 	if value != "world" {
 		t.Errorf("environ.StrGetEnv test failed. Expected: [%s] Got: [%s]", "world", value)
 	}
@@ -275,12 +275,12 @@ func TestTimeDurationGetEnv(t *testing.T) {
 		t.Error("os.Setenv returned unexpected error:", err)
 	}
 
-	value := environ.TimeDurationEnv(name, "1s")
+	value := environ.GetTimeDurationEnv(name, "1s")
 	if value != expectedValue {
 		t.Errorf("environ.StrGetEnv test failed. Expected: [%s] Got: [%s]", expectedValue, value)
 	}
 
-	value = environ.TimeDurationEnv("ENV_TEST_GET_TIME_DURATION_OTHER", "10s")
+	value = environ.GetTimeDurationEnv("ENV_TEST_GET_TIME_DURATION_OTHER", "10s")
 	if value != 10 * time.Second {
 		t.Errorf("environ.StrGetEnv test failed. Expected: [%s] Got: [%s]", "world", value)
 	}
