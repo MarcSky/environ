@@ -5,6 +5,7 @@ import (
 	"os"
 	"strconv"
 	"testing"
+	"time"
 
 	"github.com/MarcSky/environ"
 )
@@ -263,4 +264,47 @@ func TestMustGetString(t *testing.T) {
 	}()
 
 	environ.MustGetString("ENV_TEST_GET_STRING_OTHER")
+}
+
+func TestTimeDurationGetEnv(t *testing.T) {
+	name := "ENV_TEST_GET_TIME_DURATION"
+	expectedValue := 3 * time.Second
+
+	err := os.Setenv(name, "3s")
+	if err != nil {
+		t.Error("os.Setenv returned unexpected error:", err)
+	}
+
+	value := environ.TimeDurationEnv(name, "1s")
+	if value != expectedValue {
+		t.Errorf("environ.StrGetEnv test failed. Expected: [%s] Got: [%s]", expectedValue, value)
+	}
+
+	value = environ.TimeDurationEnv("ENV_TEST_GET_TIME_DURATION_OTHER", "10s")
+	if value != 10 * time.Second {
+		t.Errorf("environ.StrGetEnv test failed. Expected: [%s] Got: [%s]", "world", value)
+	}
+}
+
+func TestMustGetTimeDuration(t *testing.T) {
+	name := "ENV_TEST_GET_TIME_DURATION"
+	expectedValue := 3 * time.Second
+
+	err := os.Setenv(name, "3s")
+	if err != nil {
+		t.Error("os.Setenv returned unexpected error:", err)
+	}
+
+	value := environ.MustGetTimeDuration(name)
+	if value != expectedValue {
+		t.Errorf("environ.MustGetTimeDuration test failed. Expected: [%s] Got: [%s]", expectedValue, value)
+	}
+
+	defer func() {
+		if r := recover(); r == nil {
+			t.Error("environ.MustGetString test failed. Did not panic for missing value.")
+		}
+	}()
+
+	environ.MustGetString("ENV_TEST_GET_TIME_DURATION_OTHER")
 }

@@ -4,6 +4,7 @@ import (
 	"log"
 	"os"
 	"strconv"
+	"time"
 )
 
 const (
@@ -79,6 +80,19 @@ func BoolGetEnv(name string, def bool) bool {
 	return i
 }
 
+func TimeDurationEnv(name string, defaultVal string) time.Duration {
+	result, ok := os.LookupEnv(name)
+	if !ok {
+		result = defaultVal
+	}
+
+	d, err := time.ParseDuration(result)
+	if err != nil {
+		d, _ = time.ParseDuration(defaultVal)
+	}
+	return d
+}
+
 func MustGetString(name string) string {
 	value := StrGetEnv(name, "")
 	if value == "" {
@@ -146,3 +160,16 @@ func MustGetBool(name string) bool {
 	}
 	return i
 }
+
+func MustGetTimeDuration(name string) time.Duration {
+	result, ok := os.LookupEnv(name)
+	if !ok {
+		log.Panic(failedToGetVar, name)
+	}
+	d, err := time.ParseDuration(result)
+	if err != nil {
+		log.Panic(failedToConvVar, name)
+	}
+	return d
+}
+
